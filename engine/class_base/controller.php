@@ -9,9 +9,9 @@ if(!defined('INDEX')) { die('This file contains valid information, which you can
 class Controller
 {
 	/*
-	 *	Assigning the $model and $view variable used in various functions in this class
+	 *	Assigning the $model, $view and $config variable used in various functions in this class
 	 */
-	protected $model, $view;
+	protected $model, $view, $config;
 	
 	/*--------------------------------------------------------------------------*/
 	
@@ -32,5 +32,16 @@ class Controller
 	{
 		return $this->view;
 	}
+	
+	/*--------------------------------------------------------------------------*/
+	
+	/*
+	 *	Fetching the 'Config' class
+	 */
+	 public function config()
+	 {
+	 	return $this->config;	
+	 }
+	 }
 }
 ?>
