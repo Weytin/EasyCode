@@ -26,10 +26,7 @@ class MySQL_Database extends MySQL_Library
 		$pass = $_CONFIG['db']['pass'];
 		$db = $_CONFIG['db']['name'];
 		
-		$this->connection = new mysql
-		(
-			$host, $user, $pass, $db
-		);
+		$this->connection = mysql_connect($host, $user, $pass);
 	}
 	
 	/*--------------------------------------------------------------------------*/
@@ -39,9 +36,10 @@ class MySQL_Database extends MySQL_Library
 	 */
 	public function dbDisconnect()
 	{
-		if($this->connection->ping($this->connection) == true)
+		if($this->connection == true)
 		{
 			$this->connection->close();
+			unset($this->connection);
 		}
 	}
 	
@@ -52,25 +50,14 @@ class MySQL_Database extends MySQL_Library
 	 */
 	public function dbReconnect()
 	{
-		if(!$this->connection->ping($this->connection))
+		if($this->connection == false)
 		{
-			$this->connection->close($this->connection);
-			
-			$this->connection = new mysql
-			(
-				$host, $user, $pass, $db
-			);
+			do()
+			{
+				$this->dbConnect();
+			}
+			while(die('The MySQL connection was dropped...attempting to reconnect.'))
 		}
-	}
-	
-	/*--------------------------------------------------------------------------*/
-	
-	/*
-	 *	This function cleans all data that is being inserted in the MySQL database
-	 */
-	public function cleanString($string)
-	{
-		return $this->connection->real_escape_string(stripslashes(strip_tags(htmlentities(htmlspecialchars($data)))));
 	}
 }
 ?>
