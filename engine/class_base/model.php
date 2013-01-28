@@ -17,8 +17,7 @@ class Model
 	public function insert()
 	{
 		$rows = array(
-		'random' => 'random data',
-		'2 random' => '2 randome data'
+		$key => $value
 		);
 		
 		$query = "INSERT INTO users (`" .implode(',', $rows). "`)";
