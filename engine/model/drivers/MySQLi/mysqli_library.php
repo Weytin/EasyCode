@@ -4,7 +4,6 @@
  *
  * @author Weytin
 */
-
 abstract class MySQLi_Library
 {
 	abstract protected function dbConnect();	// Calling the dbConnect(); function
