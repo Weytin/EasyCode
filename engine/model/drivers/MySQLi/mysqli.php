@@ -27,7 +27,7 @@ class MySQLi_Database extends MySQLi_Library
 	
 	public function dbDisconnect()
 	{
-		if(!empty($this->connection) || $this->connection == true)
+		if(!empty($this->connection) || $this->connection->ping == true)
 		{
 			$this->connection->close();
 		}
@@ -43,16 +43,6 @@ class MySQLi_Database extends MySQLi_Library
 		}
 		
 		return true;
-	}
-	
-	public function cleanString($string)
-	{
-		return $this->connection->real_escape_string(addlashes(htmlentities(htmlspecialchars($string))));
-	}
-	
-	public function secureString($string)
-	{
-		return $this->connection->real_escape_string(stripslashes(strip_tags(htmlentities(htmlspecialchars($string)))));
 	}
 }
 ?>
